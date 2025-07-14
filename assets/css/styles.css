@@ -1,0 +1,189 @@
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    color: #6c3e2e;
+    background-color: #fef6f2;
+  }
+/*  header {
+    text-align: center;
+    padding: 40px 20px;
+    background: url('header-bg.jpg') no-repeat center center/cover;
+    color: white;
+    font-size: 2em;
+  }
+*/
+
+header {
+  position: relative;
+  padding: 20px 20px;
+  background: url('../images/header-bg.png') no-repeat center center / cover;
+  opacity: 0.8;
+  /*color: white;*/
+  color: #8B5E3C; /* เปลี่ยนจาก white → น้ำตาลทองนุ่ม */
+  font-size: 0.8em;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+
+.header-title {
+  flex: 1;
+}
+
+.header-title h1 {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  font-size: 2.2em;
+  letter-spacing: 1px;
+}
+
+.header-sub {
+  font-size: 1em;
+  margin-top: 5px;
+/*  color: #f8f3ee;*/
+  color: #a37c55; /* สีทองแดงอ่อน */
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    width: 70px;
+    margin-bottom: 10px;
+  }
+}
+
+
+
+/*
+  .product-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    padding: 40px 20px;
+  }
+*/
+/*
+  .product-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    padding: 60px 20px;
+    background: url('assets/images/product-bg.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-color: #fef6f2; 
+  }
+*/
+.product-section {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #fef6f2;
+  z-index: 1;
+}
+
+.product-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('../images/product-bg.png') no-repeat center center / cover;
+  opacity: 0.15; /* ความจางของภาพ ปรับได้ 0.1–0.3 */
+  z-index: 0;
+}
+
+.product-section > * {
+  position: relative;
+  z-index: 1;
+}
+  .product {
+    max-width: 300px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .product img {
+    aspect-ratio: 1 / 1; /* สี่เหลี่ยมจัตุรัสพอดี */
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .brand-story, .meaning-section {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    align-items: center;
+    background-color: #f5dad3;
+  }
+  .brand-story img {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .brand-text, .meaning-text {
+    flex: 1;
+    padding: 20px;
+  }
+  .meaning-section {
+    background: linear-gradient(to top, #d9a7c7, #fffcdc);
+    color: #5e3a3a;
+    text-align: center;
+  }
+  footer {
+    background-color: #efd3bd;
+    padding: 40px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* จาก space-between เป็น center */
+    align-items: center;
+    gap: 100px; /* เพิ่มระยะห่างที่ควบคุมได้ */
+  }
+  
+  footer img {
+    width: 250px;
+    height: auto;
+    object-fit: contain;
+  }
+  .contact-info {
+    font-size: 0.9em;
+    line-height: 2;
+  }
+  @media (max-width: 768px) {
+    .brand-story, .meaning-section, footer {
+      flex-direction: column;
+      text-align: center;
+    }
+    .brand-story img, footer img {
+      max-width: 90%;
+    }
+  }
+  
