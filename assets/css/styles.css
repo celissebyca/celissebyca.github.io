@@ -1198,10 +1198,10 @@ blockquote { margin: 2rem 0 1rem; padding-left: 1.25rem; border-left: 2px solid 
   background: linear-gradient(145deg, #f9f0e8 0%, #ead7c4 100%);
 }
 .earrings-page .earring-tile img {
-  padding: 0;
-  object-fit: cover;
+  padding: 0.7rem;
+  object-fit: contain;
   object-position: center;
-  background: #eee1d2;
+  background: linear-gradient(145deg, #f9f0e8 0%, #ead7c4 100%);
 }
 
 @media (max-width: 850px) {
@@ -1213,5 +1213,5 @@ blockquote { margin: 2rem 0 1rem; padding-left: 1.25rem; border-left: 2px solid 
   .earrings-page .earring-tile,
   .earrings-page .earring-tile--wide,
   .earrings-page .earring-tile--large { aspect-ratio: 4 / 3; }
-  .earrings-page .earring-tile img { padding: 0; }
+  .earrings-page .earring-tile img { padding: 0.4rem; }
 }
