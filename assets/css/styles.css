@@ -1312,3 +1312,44 @@ blockquote { margin: 2rem 0 1rem; padding-left: 1.25rem; border-left: 2px solid 
   .earrings-page .earring-values::after { top: -10rem; right: -15rem; width: 28rem; height: 28rem; }
   .earrings-page .earring-order-copy { padding: 1.25rem; }
 }
+
+/* Let the green salon and brown footer meet as one composed color field. */
+.earrings-page .earring-order {
+  background: radial-gradient(circle at 14% 12%, rgba(228, 193, 143, 0.2), transparent 28%), linear-gradient(118deg, #425a4c 0%, #3f5549 58%, #35493f 100%);
+}
+.earrings-page .earring-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  background: linear-gradient(118deg, #2b2520 0%, #29231e 54%, #303d33 138%);
+}
+.earrings-page .earring-footer::before {
+  position: absolute;
+  top: -17rem;
+  right: -9rem;
+  z-index: 0;
+  width: 34rem;
+  height: 34rem;
+  border: 1px solid rgba(228, 193, 143, 0.28);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2.6rem rgba(228, 193, 143, 0.065), 0 0 0 6.2rem rgba(228, 193, 143, 0.04), 0 0 0 10rem rgba(228, 193, 143, 0.022);
+  content: '';
+  pointer-events: none;
+}
+.earrings-page .earring-footer::after {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  height: 4rem;
+  background: linear-gradient(180deg, rgba(64, 85, 72, 0.34), transparent);
+  content: '';
+  pointer-events: none;
+}
+.earrings-page .earring-footer > * { position: relative; z-index: 1; }
+
+@media (max-width: 560px) {
+  .earrings-page .earring-footer::before { top: -12rem; right: -14rem; width: 24rem; height: 24rem; }
+  .earrings-page .earring-footer::after { height: 2.5rem; }
+}
