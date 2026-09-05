@@ -1215,3 +1215,54 @@ blockquote { margin: 2rem 0 1rem; padding-left: 1.25rem; border-left: 2px solid 
   .earrings-page .earring-tile--large { aspect-ratio: 4 / 3; }
   .earrings-page .earring-tile img { padding: 0.4rem; }
 }
+
+/* Earring quick view — a quiet, editorial moment for inspecting each one-off pair. */
+.earrings-page .earring-tile { cursor: zoom-in; }
+.earrings-page .earring-tile:focus-visible { outline: 2px solid var(--amber-dark); outline-offset: 0.4rem; }
+.earring-dialog {
+  width: min(70rem, calc(100% - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+  border: 1px solid rgba(180, 119, 56, 0.42);
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 2.5rem 7rem rgba(37, 29, 24, 0.34);
+  overflow: visible;
+}
+.earring-dialog[open] { animation: dialog-in var(--duration-base) var(--ease-silk) both; }
+.earring-dialog::backdrop { background: rgba(37, 29, 24, 0.72); backdrop-filter: blur(7px); }
+.earring-dialog-inner { position: relative; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(20rem, 0.92fr); max-height: calc(100vh - 2rem); overflow: auto; }
+.earring-dialog-media { position: relative; display: grid; min-height: min(42rem, calc(100vh - 2rem)); place-items: center; overflow: hidden; background: radial-gradient(circle at 50% 38%, #fffaf2 0%, #f3e4d4 58%, #e2c7a9 100%); }
+.earring-dialog-media::before { position: absolute; inset: 1.1rem; border: 1px solid rgba(125, 79, 37, 0.22); content: ''; pointer-events: none; }
+.earring-dialog-media::after { position: absolute; inset: 0; background: linear-gradient(145deg, rgba(255, 255, 255, 0.26), transparent 48%, rgba(37, 29, 24, 0.08)); content: ''; pointer-events: none; }
+.earring-dialog-media img { width: 100%; height: 100%; padding: clamp(2rem, 5vw, 4.5rem); object-fit: contain; object-position: center; filter: saturate(0.98) contrast(0.98); }
+.earring-dialog-media .media-watermark { right: 1.5rem; bottom: 1.5rem; z-index: 3; }
+.earring-dialog-index { position: absolute; top: 1.65rem; left: 1.65rem; z-index: 3; color: var(--amber-dark); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; }
+.earring-dialog-copy { display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: clamp(2.4rem, 6vw, 5.25rem) clamp(2rem, 5vw, 4.5rem); background: var(--paper); }
+.earring-dialog-copy .eyebrow { margin-bottom: 1.5rem; }
+.earring-dialog-copy h2 { max-width: 9ch; margin-bottom: 0.55rem; font-size: clamp(2.8rem, 5vw, 5rem); letter-spacing: -0.07em; line-height: 0.92; }
+.earring-dialog-subline { margin-bottom: 1.4rem; color: var(--amber-dark); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.17em; text-transform: uppercase; }
+.earring-dialog-copy > p:not(.eyebrow):not(.earring-dialog-subline):not(.earring-dialog-note) { max-width: 31rem; color: var(--ink-soft); font-size: 0.92rem; line-height: 1.75; }
+.earring-dialog-specs { display: grid; gap: 0; margin: 1.65rem 0 2rem; border-top: 1px solid var(--line); }
+.earring-dialog-specs > div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: 0.72rem 0; border-bottom: 1px solid var(--line); }
+.earring-dialog-specs dt { color: var(--amber-dark); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.earring-dialog-specs dd { margin: 0; color: var(--ink-soft); font-size: 0.78rem; }
+.earring-dialog-copy .button { align-self: flex-start; min-height: 3.15rem; padding-inline: 1.35rem; box-shadow: 0 0.8rem 1.5rem rgba(37, 29, 24, 0.1); }
+.earring-dialog-note { margin: 1rem 0 0; color: var(--ink-soft); font-size: 0.7rem; line-height: 1.55; }
+.earring-dialog-close { position: absolute; top: 0.9rem; right: 0.9rem; z-index: 5; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid rgba(37, 29, 24, 0.26); border-radius: 50%; background: rgba(251, 247, 241, 0.9); color: var(--ink); font-size: 1.6rem; line-height: 1; cursor: pointer; transition: background var(--duration-fast) var(--ease-silk), color var(--duration-fast) var(--ease-silk), transform var(--duration-fast) var(--ease-silk); }
+.earring-dialog-close:hover { background: var(--ink); color: var(--paper); transform: rotate(8deg); }
+
+@media (max-width: 700px) {
+  .earring-dialog { width: min(42rem, calc(100% - 1rem)); max-height: calc(100vh - 1rem); }
+  .earring-dialog-inner { grid-template-columns: 1fr; max-height: calc(100vh - 1rem); }
+  .earring-dialog-media { min-height: min(52vh, 28rem); }
+  .earring-dialog-media img { padding: 2.5rem 3.2rem; }
+  .earring-dialog-copy { padding: 2.4rem 1.6rem 2.2rem; }
+  .earring-dialog-copy h2 { max-width: none; font-size: clamp(2.8rem, 13vw, 4.2rem); }
+  .earring-dialog-copy .button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .earring-dialog[open] { animation: none; }
+  .earring-dialog-close { transition: none; }
+}

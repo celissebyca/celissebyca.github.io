@@ -104,6 +104,30 @@
       </div>
     </section>
 
+    <dialog class="earring-dialog" id="earring-dialog" aria-labelledby="earring-dialog-title" aria-describedby="earring-dialog-copy">
+      <div class="earring-dialog-inner">
+        <button class="dialog-close earring-dialog-close" type="button" data-close-earring aria-label="Close product preview">×</button>
+        <div class="earring-dialog-media media-protected">
+          <img id="earring-dialog-image" alt="" decoding="async">
+          <span class="media-watermark" aria-hidden="true">Celisse · studio preview · ©</span>
+          <span class="earring-dialog-index" id="earring-dialog-index" aria-hidden="true"></span>
+        </div>
+        <div class="earring-dialog-copy">
+          <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> Atelier detail</p>
+          <h2 id="earring-dialog-title">A considered pair.</h2>
+          <p class="earring-dialog-subline" id="earring-dialog-subline"></p>
+          <p id="earring-dialog-copy">Each pair is shaped, arranged, and finished by hand in small batches. Open the image for a closer look at the texture, light, and tiny variations that make it yours.</p>
+          <dl class="earring-dialog-specs">
+            <div><dt>Material</dt><dd>Hand-formed polymer · clear resin</dd></div>
+            <div><dt>Finish</dt><dd>Small-batch, one-off study</dd></div>
+            <div><dt>Availability</dt><dd>To be confirmed by the studio</dd></div>
+          </dl>
+          <a class="button button--solid" id="earring-dialog-enquire" href="mailto:hello@celissebyca.com?subject=Celisse%20earring%20enquiry">Ask about this pair <span aria-hidden="true">↗</span></a>
+          <p class="earring-dialog-note">We’ll confirm measurements, availability, and the current price in a personal note.</p>
+        </div>
+      </div>
+    </dialog>
+
     <section class="earring-order" id="contact" aria-labelledby="order-title">
       <div>
         <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> Make it yours</p>
@@ -137,6 +161,50 @@
     });
     siteNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => { menuToggle.setAttribute('aria-expanded', 'false'); siteNav.classList.remove('is-open'); }));
     document.querySelectorAll('a[href="#top"]').forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }));
+    const earringDialog = document.querySelector('#earring-dialog');
+    const earringDialogImage = document.querySelector('#earring-dialog-image');
+    const earringDialogTitle = document.querySelector('#earring-dialog-title');
+    const earringDialogSubline = document.querySelector('#earring-dialog-subline');
+    const earringDialogIndex = document.querySelector('#earring-dialog-index');
+    const earringDialogEnquire = document.querySelector('#earring-dialog-enquire');
+    const closeEarringDialog = () => earringDialog.close();
+    let lastEarringTrigger = null;
+
+    const openEarringDialog = (trigger) => {
+      const image = trigger.querySelector('img');
+      const title = trigger.querySelector('figcaption strong')?.textContent.trim() || 'A considered pair';
+      const meta = trigger.querySelector('figcaption small')?.textContent.trim() || 'Hand-finished study';
+      const index = meta.match(/^\d+/)?.[0] || '';
+      lastEarringTrigger = trigger;
+      earringDialogTitle.textContent = title;
+      earringDialogSubline.textContent = meta.replace(/^\d+\s*[·•-]?\s*/, '');
+      earringDialogIndex.textContent = index ? `${index.padStart(2, '0')} / 24` : '';
+      earringDialogImage.src = image.getAttribute('src');
+      earringDialogImage.alt = image.alt;
+      earringDialogEnquire.href = `mailto:hello@celissebyca.com?subject=${encodeURIComponent(`Celisse earring enquiry — ${title}`)}`;
+      earringDialog.showModal();
+      document.querySelector('[data-close-earring]')?.focus();
+    };
+
+    document.querySelectorAll('.earring-tile').forEach((tile) => {
+      const title = tile.querySelector('figcaption strong')?.textContent.trim() || 'earring';
+      tile.tabIndex = 0;
+      tile.setAttribute('role', 'button');
+      tile.setAttribute('aria-haspopup', 'dialog');
+      tile.setAttribute('aria-label', `View ${title} details`);
+      tile.addEventListener('click', () => openEarringDialog(tile));
+      tile.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        openEarringDialog(tile);
+      });
+    });
+
+    document.querySelector('[data-close-earring]').addEventListener('click', closeEarringDialog);
+    earringDialog.addEventListener('click', (event) => {
+      if (event.target === earringDialog) closeEarringDialog();
+    });
+    earringDialog.addEventListener('close', () => lastEarringTrigger?.focus());
     const revealItems = document.querySelectorAll('[data-reveal]');
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const observer = new IntersectionObserver((entries, io) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); io.unobserve(entry.target); } }), { threshold: 0.08 });
