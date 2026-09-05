@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260905-premium">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260905-earring-luxury">
 </head>
 <body class="earrings-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -154,8 +154,26 @@
       const watermark = document.createElement('span');
       watermark.className = 'media-watermark';
       watermark.setAttribute('aria-hidden', 'true');
-      watermark.textContent = 'Celisse · studio preview';
+      watermark.textContent = 'Celisse · studio preview · ©';
       frame.append(watermark);
+    });
+    const preventImageSelection = (event) => {
+      const target = event.target;
+      if (target instanceof Element && target.closest('img')) event.preventDefault();
+    };
+    document.addEventListener('selectstart', preventImageSelection);
+    document.addEventListener('copy', (event) => {
+      const selection = window.getSelection();
+      if (!selection || !selection.rangeCount) return;
+      const fragment = selection.getRangeAt(0).cloneContents();
+      if (fragment.querySelector && fragment.querySelector('img')) event.preventDefault();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (!(event.ctrlKey || event.metaKey) || event.altKey) return;
+      const active = document.activeElement;
+      if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable)) return;
+      const key = event.key.toLowerCase();
+      if (key === 's' || key === 'u') event.preventDefault();
     });
     document.addEventListener('contextmenu', (event) => {
       if (event.target.closest('img')) event.preventDefault();
