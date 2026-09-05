@@ -1369,3 +1369,19 @@ blockquote { margin: 2rem 0 1rem; padding-left: 1.25rem; border-left: 2px solid 
 @media (max-width: 560px) {
   .earrings-page .earring-footer::before { top: -11rem; right: -13rem; width: 23rem; height: 23rem; }
 }
+
+/* Give the atelier hero the same visual presence as the homepage hero. */
+@media (min-width: 851px) {
+  .earrings-page .earring-hero {
+    grid-template-columns: minmax(0, 0.82fr) minmax(24rem, 1.18fr);
+    gap: clamp(2rem, 5.5vw, 5.5rem);
+  }
+
+  .earrings-page .earring-hero-art {
+    min-height: clamp(40rem, 72vh, 48rem);
+  }
+
+  .earrings-page .earring-hero-frame {
+    inset: 0 0.25rem 2.2rem -1.35rem;
+  }
+}
