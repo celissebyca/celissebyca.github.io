@@ -1266,3 +1266,49 @@ blockquote { margin: 2rem 0 1rem; padding-left: 1.25rem; border-left: 2px solid 
   .earring-dialog[open] { animation: none; }
   .earring-dialog-close { transition: none; }
 }
+
+/* Final polish for the two signature bands. */
+.earrings-page .earring-values::after {
+  position: absolute;
+  top: -13rem;
+  right: -8rem;
+  z-index: -1;
+  width: 34rem;
+  height: 34rem;
+  border: 1px solid rgba(228, 193, 143, 0.24);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2.6rem rgba(228, 193, 143, 0.055), 0 0 0 6.2rem rgba(228, 193, 143, 0.032), 0 0 0 10rem rgba(228, 193, 143, 0.018);
+  content: '';
+  pointer-events: none;
+  transform: rotate(-18deg);
+}
+.earrings-page .earring-order {
+  background: radial-gradient(circle at 14% 12%, rgba(228, 193, 143, 0.2), transparent 28%), linear-gradient(118deg, #405548 0%, #3a5144 58%, #30473b 100%);
+}
+.earrings-page .earring-order .eyebrow { color: var(--paper-warm); }
+.earrings-page .earring-order h2 { color: #fffaf4; text-shadow: 0 0.2rem 1.2rem rgba(24, 37, 30, 0.16); }
+.earrings-page .earring-order-copy {
+  position: relative;
+  padding: clamp(1.35rem, 2.6vw, 2.2rem);
+  border: 1px solid rgba(251, 247, 241, 0.24);
+  background: linear-gradient(145deg, rgba(251, 247, 241, 0.11), rgba(251, 247, 241, 0.035));
+  box-shadow: 0 1.5rem 3rem rgba(24, 37, 30, 0.14), inset 0 1px rgba(255, 255, 255, 0.08);
+}
+.earrings-page .earring-order-copy::before {
+  position: absolute;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  left: -1px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--paper-warm), rgba(228, 193, 143, 0.08));
+  content: '';
+}
+.earrings-page .earring-order-copy > p:first-child { color: rgba(255, 250, 244, 0.94); }
+.earrings-page .earring-order .order-note { color: #f0cf9c; }
+.earrings-page .earring-order .button--solid { box-shadow: 0 0.8rem 1.8rem rgba(25, 35, 29, 0.2); }
+.earrings-page .earring-order .button--solid:hover { border-color: #fffaf4; background: #fffaf4; color: #30473b; }
+
+@media (max-width: 560px) {
+  .earrings-page .earring-values::after { top: -10rem; right: -15rem; width: 28rem; height: 28rem; }
+  .earrings-page .earring-order-copy { padding: 1.25rem; }
+}
