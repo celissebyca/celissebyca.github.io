@@ -7,16 +7,15 @@
   <title>Celisse by Chaonang Amy | Softness &amp; Soul</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260821-2">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260905-premium">
 </head>
-<body>
+<body class="home-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
 
   <header class="site-header" id="top">
     <a class="brand" href="#top" aria-label="Celisse by Chaonang Amy home">
       <img src="assets/images/logo-no-bg.png" alt="" class="brand-mark">
-      <span class="brand-name">Celisse <small>Chaonang Amy</small></span>
     </a>
 
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -32,6 +31,14 @@
       <a class="nav-cta" href="#contact">Find your ritual <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
+
+  <aside class="atelier-strip" aria-label="Celisse studio note">
+    <div class="atelier-strip-inner">
+      <span class="atelier-strip-note"><span class="strip-dot" aria-hidden="true"></span> Made in small batches · Bangkok</span>
+      <span class="atelier-strip-materials">Botanical care · Candlelight · Polymer resin forms</span>
+      <a href="#contact">Request a considered quote <span aria-hidden="true">↗</span></a>
+    </div>
+  </aside>
 
   <main id="main-content">
     <section class="hero" aria-labelledby="hero-title">
@@ -76,6 +83,7 @@
         <div class="pathways-heading">
           <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span> A ritual for every setting</p>
           <h2 id="pathways-title">Made to be<br><em>felt, then shared.</em></h2>
+          <p class="pathways-note">Three ways to return to yourself — for daily rituals, thoughtful gifts, and considered spaces.</p>
         </div>
         <div class="pathway-grid">
           <a class="pathway" href="#collection" data-reveal>
@@ -97,6 +105,12 @@
             <span class="pathway-arrow" aria-hidden="true">↗</span>
           </button>
         </div>
+      </div>
+    </section>
+
+    <section class="ritual-marquee" aria-label="Celisse materials and making">
+      <div class="marquee-track">
+        <span>Thai botanicals</span><i class="marquee-mark" aria-hidden="true"></i><span>Hand-finished objects</span><i class="marquee-mark" aria-hidden="true"></i><span>Quietly made in Bangkok</span><i class="marquee-mark" aria-hidden="true"></i><span>Thai botanicals</span><i class="marquee-mark" aria-hidden="true"></i><span>Hand-finished objects</span><i class="marquee-mark" aria-hidden="true"></i><span>Quietly made in Bangkok</span><i class="marquee-mark" aria-hidden="true"></i>
       </div>
     </section>
 
@@ -557,6 +571,24 @@
       });
     }
 
+    /* Protect public image previews without blocking normal page navigation. */
+    const protectedFrames = '.hero-art-frame, .product-media, .family-gallery figure, .story-image, .footer-image';
+    document.querySelectorAll('img:not(.brand-mark)').forEach((image) => {
+      image.draggable = false;
+      image.classList.add('protected-image');
+      image.addEventListener('dragstart', (event) => event.preventDefault());
+      const frame = image.closest(protectedFrames);
+      if (!frame || frame.querySelector('.media-watermark')) return;
+      frame.classList.add('media-protected');
+      const watermark = document.createElement('span');
+      watermark.className = 'media-watermark';
+      watermark.setAttribute('aria-hidden', 'true');
+      watermark.textContent = 'Celisse · studio preview';
+      frame.append(watermark);
+    });
+    document.addEventListener('contextmenu', (event) => {
+      if (event.target.closest('img')) event.preventDefault();
+    });
     document.querySelector('#current-year').textContent = new Date().getFullYear();
   </script>
 </body>

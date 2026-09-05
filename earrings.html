@@ -7,8 +7,8 @@
   <title>The Earring Atelier | Celisse by Chaonang Amy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260905-1">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260905-premium">
 </head>
 <body class="earrings-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -16,7 +16,6 @@
   <header class="site-header" id="top">
     <a class="brand" href="index.html#top" aria-label="Celisse by Chaonang Amy home">
       <img src="assets/images/logo-no-bg.png" alt="" class="brand-mark">
-      <span class="brand-name">Celisse <small>Chaonang Amy</small></span>
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
       <span class="menu-toggle-label">Menu</span>
@@ -143,6 +142,24 @@
       const observer = new IntersectionObserver((entries, io) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); io.unobserve(entry.target); } }), { threshold: 0.08 });
       revealItems.forEach((item) => observer.observe(item));
     } else revealItems.forEach((item) => item.classList.add('is-visible'));
+    /* Protect public image previews without blocking normal page navigation. */
+    const protectedFrames = '.earring-hero-frame, .earring-tile, .footer-image';
+    document.querySelectorAll('img:not(.brand-mark)').forEach((image) => {
+      image.draggable = false;
+      image.classList.add('protected-image');
+      image.addEventListener('dragstart', (event) => event.preventDefault());
+      const frame = image.closest(protectedFrames);
+      if (!frame || frame.querySelector('.media-watermark')) return;
+      frame.classList.add('media-protected');
+      const watermark = document.createElement('span');
+      watermark.className = 'media-watermark';
+      watermark.setAttribute('aria-hidden', 'true');
+      watermark.textContent = 'Celisse · studio preview';
+      frame.append(watermark);
+    });
+    document.addEventListener('contextmenu', (event) => {
+      if (event.target.closest('img')) event.preventDefault();
+    });
     document.querySelectorAll('.current-year').forEach((year) => { year.textContent = new Date().getFullYear(); });
   </script>
 </body>
