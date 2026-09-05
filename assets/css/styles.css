@@ -1181,3 +1181,32 @@ blockquote { margin: 2rem 0 1rem; padding-left: 1.25rem; border-left: 2px solid 
 @media (prefers-reduced-motion: reduce) {
   .earrings-page .earring-tile, .earrings-page .earring-values-grid article, .earrings-page .earring-hero-frame img { transition: none !important; }
 }
+
+/* Unified horizontal product plates: preserve the full silhouette, never crop the piece. */
+.earrings-page .earring-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: auto;
+  gap: clamp(0.8rem, 1.4vw, 1.25rem);
+}
+.earrings-page .earring-tile,
+.earrings-page .earring-tile--wide,
+.earrings-page .earring-tile--large {
+  grid-column: span 1;
+  grid-row: auto;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  background: linear-gradient(145deg, #f9f0e8 0%, #ead7c4 100%);
+}
+.earrings-page .earring-tile img { padding: 0.7rem; }
+
+@media (max-width: 850px) {
+  .earrings-page .earring-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .earrings-page .earring-grid { gap: 0.65rem; }
+  .earrings-page .earring-tile,
+  .earrings-page .earring-tile--wide,
+  .earrings-page .earring-tile--large { aspect-ratio: 4 / 3; }
+  .earrings-page .earring-tile img { padding: 0.4rem; }
+}
