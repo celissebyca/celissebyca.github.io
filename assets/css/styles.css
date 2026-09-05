@@ -1117,8 +1117,10 @@ blockquote { margin: 2rem 0 1rem; padding-left: 1.25rem; border-left: 2px solid 
 }
 .earrings-page .earring-section-heading h2 { font-size: clamp(3rem, 5.6vw, 6rem); letter-spacing: -0.075em; line-height: 0.9; }
 .earrings-page .earring-section-heading h2 em { color: var(--amber); }
-.earrings-page .earring-tile { border: 1px solid rgba(37, 29, 24, 0.16); box-shadow: 0 1.25rem 2.5rem rgba(37, 29, 24, 0.1); transition: transform var(--duration-base) var(--ease-silk), box-shadow var(--duration-base) var(--ease-silk); }
+.earrings-page .earring-tile { min-height: 15rem; border: 1px solid rgba(37, 29, 24, 0.16); box-shadow: 0 1.25rem 2.5rem rgba(37, 29, 24, 0.1); transition: transform var(--duration-base) var(--ease-silk), box-shadow var(--duration-base) var(--ease-silk); }
 .earrings-page .earring-tile:hover { box-shadow: 0 1.6rem 3.2rem rgba(37, 29, 24, 0.18); transform: translateY(-0.35rem); }
+.earrings-page .earring-tile img { object-fit: contain; padding: 0.65rem; background: linear-gradient(145deg, #f8eee4, #ead8c6); }
+.earrings-page .earring-tile img[src*="retouched"] { background: linear-gradient(145deg, #f9f0e8, #e8d4c0); }
 .earrings-page .earring-tile figcaption { right: 0; bottom: 0; left: 0; padding: 0.65rem 0.75rem; background: linear-gradient(180deg, transparent, rgba(37, 29, 24, 0.65)); }
 .earrings-page .earring-tile figcaption small { letter-spacing: 0.14em; }
 
@@ -1170,7 +1172,9 @@ blockquote { margin: 2rem 0 1rem; padding-left: 1.25rem; border-left: 2px solid 
   .earrings-page .earring-hero-frame { border-radius: 0 0 0 4.5rem; }
   .earrings-page .earring-hero-frame::before { inset: 0.6rem; border-radius: 0 0 0 3.9rem; }
   .earrings-page .earring-hero-frame .media-watermark { bottom: 2.35rem; }
-  .earrings-page .earring-tile .media-watermark { right: 0.45rem; bottom: 2.15rem; padding: 0.3rem 0.35rem; font-size: 0.4rem; }
+  .earrings-page .earring-tile { min-height: 14rem; }
+  .earrings-page .earring-tile img { padding: 0.4rem; }
+  .earrings-page .earring-tile .media-watermark { top: 0.55rem; right: 0.45rem; bottom: auto; padding: 0.3rem 0.35rem; font-size: 0.4rem; }
   .earrings-page .earring-order::after { display: none; }
 }
 
