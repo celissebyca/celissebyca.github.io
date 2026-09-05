@@ -1353,3 +1353,19 @@ blockquote { margin: 2rem 0 1rem; padding-left: 1.25rem; border-left: 2px solid 
   .earrings-page .earring-footer::before { top: -12rem; right: -14rem; width: 24rem; height: 24rem; }
   .earrings-page .earring-footer::after { height: 2.5rem; }
 }
+
+/* Full-bleed footer and one deliberate ring system at the green-to-brown seam. */
+.earrings-page .site-footer { max-width: none; }
+.earrings-page .earring-order::after { display: none; }
+.earrings-page .earring-footer::before {
+  top: -16rem;
+  right: -10rem;
+  width: 32rem;
+  height: 32rem;
+  border-color: rgba(228, 193, 143, 0.26);
+  box-shadow: 0 0 0 3rem rgba(228, 193, 143, 0.055), 0 0 0 7rem rgba(228, 193, 143, 0.028);
+}
+
+@media (max-width: 560px) {
+  .earrings-page .earring-footer::before { top: -11rem; right: -13rem; width: 23rem; height: 23rem; }
+}
